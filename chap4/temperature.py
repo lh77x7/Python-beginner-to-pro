@@ -13,6 +13,8 @@ def calculate_future_value(monthly_investment, yearly_interest, years):
         future_value += monthly_interest
     return future_value
 
+# the main() function is used to test the other functions
+# this code isn't run if this module isn't the main module
 def main():
     choice = "y"
     while choice.lower() == "y":
@@ -34,5 +36,7 @@ def main():
 
     print("Bye!")
 
+# if this module is the main module, call the main() function
+# to test the other functions
 if __name__ == "__main__":
     main()
