@@ -47,6 +47,7 @@ def take_turn(turn, score, game_over):
         else:
             print("Invalid choice, Try again.")
     return turn, score, game_over
+
 def roll_die(turn, score, score_this_turn):
 
     die = random.randint(1, 6)
@@ -60,7 +61,6 @@ def roll_die(turn, score, score_this_turn):
         score_this_turn += die
         turn_over = False
     return turn, score, score_this_turn, turn_over
-
 
 def hold_turn(turn, score, score_this_turn):
 
@@ -77,6 +77,7 @@ def hold_turn(turn, score, score_this_turn):
         return turn, score, turn_over, game_over
     turn += 1
     return turn, score, turn_over, game_over
+
 # if started as the main module, call the main() func
 if __name__ == "__main__":
     main()
