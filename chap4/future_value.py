@@ -11,6 +11,7 @@ def calculate_future_value(monthly_investment, yearly_interest, years):
         future_value += monthly_investment
         monthly_interest = future_value * monthly_interest_rate
         future_value += monthly_interest
+        
     return future_value
 
 # the main() function is used to test the other functions
