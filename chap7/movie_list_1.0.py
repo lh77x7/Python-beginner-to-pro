@@ -1,3 +1,5 @@
+import os
+
 FILENAME = "movies.txt"
 
 # write to file
