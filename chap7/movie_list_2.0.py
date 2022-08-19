@@ -1,16 +1,17 @@
 import csv
-
-# a file in the current directory
-FILENAME = "movies/movies.csv"
+from os.path import dirname, join
+current_dir = dirname(__file__)
+FILENAME = "movies.csv" # operate on csv file
+file_path = join(current_dir, FILENAME)
 
 def write_movies(movies):
-    with open(FILENAME, "w", newline="") as file:
+    with open(file_path, "w", newline="") as file:
         writer = csv.writer(file)
         writer.writerows(movies)
 
 def read_movies():
     movies = []
-    with open(FILENAME, newline="") as file:
+    with open(file_path, newline="") as file:
         reader = csv.reader(file)
         for row in reader:
             movies.append(row)
