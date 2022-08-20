@@ -12,7 +12,7 @@ def write_movies(movies):
 # read from file
 def read_movies():
     movies = []
-    with open(file_path) as file:
+    with open(FILENAME) as file:
         for line in file:
             line = line.replace("\n", "")
             movies.append(line)
@@ -31,7 +31,6 @@ def add_movie(movies):
     movies.append(movie)
     write_movies(movies)
     print(movie + " was added.\n")
-
 
 # remove movie
 def delete_movie(movies):

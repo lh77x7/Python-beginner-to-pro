@@ -18,9 +18,11 @@ def read_movies():
     return movies
 
 def list_movies(movies):
+    # i = 0
     for i in range(len(movies)):
         movie = movies[i]
-        print(str(i+1) + ". " + movie[0] + " (" + movie[1] + ")")
+        print(str(i+1) + ". " + movie[0])
+        # i += 1
     print()
 
 def add_movie(movies):
