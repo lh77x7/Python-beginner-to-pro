@@ -2,7 +2,7 @@ import pickle
 
 from os.path import dirname, join
 current_dir = dirname(__file__)
-FILENAME = "trips.bin" # operate on csv file
+FILENAME = "trips.bin" # operate on bin file
 file_path = join(current_dir, FILENAME)
 
 # write trips to bin file
