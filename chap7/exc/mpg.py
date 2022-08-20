@@ -11,6 +11,15 @@ def write_trips(trips):
         writer = csv.writer(file)
         writer.writerows(trips)
 
+# read all trips
+def read_trips():
+    trips = []
+    with open(file_path, newline="") as file:
+        reader = csv.reader(file)
+        for row in reader:
+            trips.append(row)
+    return trips
+
 # how much milles have you drove ?
 def get_miles_driven():
     while True:
@@ -31,34 +40,44 @@ def get_used_gallons():
             print("Entry must be greater than zero. Please try again.\n")
             continue
 
-# main function
-
-def main():
-    # welcome message
-    print("The Miles per Gallon application")
+# list of trips
+def list_trips(trips):
+    print("Distance\tGallons\t\tMPG")
+    for i in range(0, len(trips)):
+        trip = trips[i]
+        print(str(trip[0]) + "\t\t" + str(trip[1]) + "\t\t" + str(trip[2]))
     print()
 
-    trips = []
+
+# def main
+def main():
+    # display welocome message
+    print("The Miles Per Gallon application")
+    print()
+
+    trips = read_trips()
+    list_trips(trips)
 
     more = "y"
     while more.lower() == "y":
         miles_driven = get_miles_driven()
-        gallons_used = get_used_gallons()
+        gallon_used = get_used_gallons()
 
-        mpg = round((miles_driven / gallons_used), 2)
+        mpg = round((miles_driven / gallon_used), 2)
 
-        print("Miles Per Gallon:\t" + str(mpg))
+        print("Miles Per Galon:\t" + str(mpg))
         print()
 
         trip = []
         trip.append(miles_driven)
-        trip.append(gallons_used)
+        trip.append(gallon_used)
         trip.append(mpg)
         trips.append(trip)
-        
+        write_trips(trips)
+
+        list_trips(trips)
+
         more = input("More entries? (y or n): ")
-    
-    write_trips(trips)
 
     print("Bye")
 
