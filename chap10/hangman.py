@@ -1,49 +1,8 @@
-import random
-
-# list of words from https://www.randomlists.com/random-words?dup=false&qty=30
-
-words = [
-    "purring",
-    "attach",
-    "educated",
-    "curved",
-    "creator",
-    "ill",
-    "shiny",
-    "squealing",
-    "wry",
-    "towering",
-    "animated",
-    "godly",
-    "well-off",
-    "nervous",
-    "fog",
-    "detailed",
-    "broken",
-    "actor",
-    "fowl",
-    "hungry",
-    "apologise",
-    "majestic",
-    "reduce",
-    "cruel",
-    "join",
-    "special",
-    "title",
-    "sudden",
-    "drawer",
-    "white"
-]
-
-def get_random_word():
-    word = random.choice(words)
-    return word
-
-import wordlist
+import mywordlist
 
 # get a random word from the word list
 def get_word():
-    word = wordlist.get_random_word()
+    word = mywordlist.get_random_word()
     return word.upper()
 
 # add spaces between letters
@@ -76,5 +35,59 @@ def get_letter(guessed_letters):
         else:
             return guess
 
+# the input/precess/draw technique is common in game programming
+def play_game():
+    word = get_word()
 
+    word_length = len(word)
+    remainig_letters = word_length
+    displayed_word = "_" * word_length
+
+    num_wrong = 0
+    num_guesses = 0
+    guessed_letters = ""
+
+    draw_screen(num_wrong, num_guesses, guessed_letters, displayed_word)
+
+    while num_wrong < 10 and remainig_letters > 0:
+        guess = get_letter(guessed_letters)
+        guessed_letters += guess
+
+        pos = word.find(guess, 0)
+
+        if pos != -1:
+            displayed_word = ""
+            remainig_letters = word_length
+            for char in word:
+                if char in guessed_letters:
+                    displayed_word += char
+                    remainig_letters -= 1
+                else:
+                    displayed_word += "_"
+        else:
+            num_wrong += 1
+
+        num_guesses += 1
+
+        draw_screen(num_wrong, num_guesses, guessed_letters, displayed_word)
+
+    print("-" * 79)
+    if remainig_letters == 0:
+        print("Congratulations! You got it in",
+        num_guesses, "guesses.")
+    else:
+        print("Sorry, you lost.")
+        print("The word was:", word)
+
+def main():
+    print("Play the HANGMAN game")
+    while True:
+        play_game()
+        print()
+        again = input("Do you want to play again (y/n)?: ").lower()
+        if again != "y":
+            break
+
+if __name__ == "__main__":
+    main()
 
