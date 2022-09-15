@@ -1,7 +1,7 @@
 def show_book(book_catalog):
     title = input("Enter the title for book: ")
     if title in book_catalog:
-        book = book_catalog(title)
+        book = book_catalog[title]
         print("Title:       " + title)
         print("Author:      " + book["author"])
         print("Pub year:    " + book["pubyear"])
@@ -45,7 +45,7 @@ def display_menu():
     print("show - Show book info")
     print("add - Add book")
     print("edit - Edit book")
-    print("del - Delet ebook")
+    print("del - Delete book")
     print("exit - Exit program")
 
 def main():
