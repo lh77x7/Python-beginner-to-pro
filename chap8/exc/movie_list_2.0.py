@@ -15,26 +15,10 @@ def display_menu():
     print()
 
 def list_movies(movies):
-    for i in range(0, len(movies)):
-        movie = movies[i]
-        print(str(i+1) + ". " + movie[0] + " (" + str(movie[1]) + ")")
-        print()
+    print()
 
 def add_movies(movies):
-    name = input("Name: ")
-    while True:
-        year = int(input("Year: "))
-        if year <= 0:
-            print("Year must be greater than zero. Please try again.")
-            continue
-        else:
-            break
-    movie = []
-    movie.append(name)
-    movie.append(year)
-    movies.append(movie)
-    write_movies(movies)
-    print(name + " was added.\n")
+    print()
 
 def read_movies():
     try:
