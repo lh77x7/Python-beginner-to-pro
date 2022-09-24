@@ -15,10 +15,32 @@ def display_menu():
     print()
 
 def list_movies(movies):
-    print()
+    for i in range(0, len(movies)):
+        movie = movies[i]
+        print(str(i+1) + ". " + movie[0] + " (" + str(movie[1]) + ")")
+        print()
 
 def add_movies(movies):
-    print()
+    name = input("Name: ")
+    while True:
+        try:
+            year = int(input("Year: "))
+        except ValueError:
+            print("Invalid integer. Please try again.")
+            continue
+        if year <= 0:
+            print("Year must be greater than zero. Please try again.")
+            continue
+        else:
+            break
+    
+    movie = []
+    movie.append(name)
+    movie.append(year)
+    movies.append(movie)
+    write_movies(movies)
+    print(name + " was added.\n")
+
 
 def read_movies():
     try:
@@ -29,8 +51,9 @@ def read_movies():
                 movies.append(row)
         return movies
     except FileNotFoundError:
-        print("Could not find " + FILENAME + " file.")
-        exit_program()
+#        print("Could not find " + FILENAME + " file.")
+#        exit_program()
+        return movies
     except Exception as e:
         print(type(e), e)
         exit_program()
@@ -38,8 +61,12 @@ def read_movies():
 def write_movies(movies):
     try:
         with open(file_path, "w", newline="") as file:
+#           raise BlockingIOError("Error raised for testing.")
             writer = csv.writer(file)
-            writer.writerow(movies)
+            writer.writerows(movies)
+    except OSError as e:
+        print(type(e), e)
+        exit_program()
     except Exception as e:
         print(type(e), e)
         exit_program()
@@ -80,3 +107,6 @@ def main():
         else:
             print("Not a valid command. Please try again.\n")
     print("Bye!")
+
+if __name__ == "__main__":
+    main()
