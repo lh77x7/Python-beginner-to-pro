@@ -16,6 +16,13 @@ def get_words_from_file(file_path):
     words.sort()
     return words
 
+def get_sentences_from_file(file_path):
+    with open(file_path) as file:
+        text = file.read()  # read str from file
+
+    sentences = text.split(".")     # convert str to list
+    return sentences
+
 def get_unique_words(words):
     unique_words = []
     unique_words.append(words[0])
@@ -30,11 +37,15 @@ def get_unique_words(words):
 def main():
     print("The Word Counter program\n")
 
+    # get sentences
+    sentences = get_sentences_from_file(file_path)
+
     # get words and unique words
     words = get_words_from_file(file_path) # get list of words
     unique_words = get_unique_words(words)
 
-    # display number of words and unique words
+    # display number of sentences, words, and unique words
+    print("Number of sentences =", len(sentences))
     print("Number of words = ", len(words))
     print("Number of unique words = ", len(unique_words))
 
